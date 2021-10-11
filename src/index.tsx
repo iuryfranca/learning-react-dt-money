@@ -10,7 +10,7 @@ createServer({
 
   seeds(server) {
     server.db.loadData({
-      transaction: [
+      transactions: [
         {
           id: 1,
           title: "Freelancer de website",
@@ -34,14 +34,14 @@ createServer({
   routes() {
     this.namespace = 'api'
 
-    this.get('transactions', () => {
+    this.get('/transactions', () => {
       return this.schema.all('transaction')
     })
 
-    this.post('/transitions', (schema, request) => {
+    this.post('/transactions', (schema, request) => {
       const data = JSON.parse(request.requestBody)
 
-      return schema.create('transition', data);
+      return schema.create('transaction', data);
     })
   }
 })
